@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
+import appleImage from './images/apple.jpeg';
+import banannaImage from './images/bananna.jpeg';
+import blueberryImage from './images/blueberry.jpeg';
+import mangoImage from './images/Mango.jpeg';
+import orangeImage from './images/orange.jpeg';
+import strawberryImage from './images/strawberry.jpeg';
+import grapeImage from './images/grape.jpeg';
+import watermelonImage from './images/watermelon.jpeg';
+
 
 const fruits = [
-  { name: 'Apple', img: 'images/apple.jpg' },
-  { name: 'Banana', img: 'images/bananna.jpg' },
-  { name: 'Blueberry', img: 'images/blueberry.jpg' },
-  { name: 'Mango', img: 'images/Mango.jpg' },
-  { name: 'Orange', img: 'images/orange.jpg' },
-  { name: 'Strawberry', img: 'images/strawberry.jpg' },
-  { name: 'Grape', img: 'images/grape.jpg' },
-  { name: 'Watermelon', img: 'images/watermelon.jpg' },
+  { name: 'Apple', img: appleImage},
+  { name: 'Banana', img: banannaImage},
+  { name: 'Blueberry', img: blueberryImage },
+  { name: 'Mango', img: mangoImage },
+  { name: 'Orange', img: orangeImage},
+  { name: 'Strawberry', img: strawberryImage },
+  { name: 'Grape', img: grapeImage },
+  { name: 'Watermelon', img: watermelonImage },
 ];
 
 function App() {
@@ -28,6 +37,7 @@ function App() {
 
   return (
     <div className="combo-box">
+      <h1>Tommy</h1>
       <input
         type="text"
         value={inputValue}
