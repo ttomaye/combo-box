@@ -100,7 +100,7 @@ function App() {
     <div className="app-container">
       <div className="combo-box" ref={comboBoxRef}>
         <h3>Tommy Combo Box</h3>
-        <div className="wrapper">
+        <div className="wrapper" aria-haspopup="listbox" aria-expanded={isDropdownVisible}>
           <input
             type="text"
             className='search-input-field'
@@ -111,6 +111,8 @@ function App() {
               setDropdownVisibility(true);
               setSelectedFruit(null);
             }}
+            aria-autocomplete="list"
+            aria-controls="fruit-list"
             placeholder="Choose a Fruit..."
           />
           <span className="arrow">▼</span>
