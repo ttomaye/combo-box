@@ -25,6 +25,7 @@ function App() {
   const [inputValue, setInputValue] = useState('');
   const [filteredFruits, setFilteredFruits] = useState(fruits);
   const [selectedFruit, setSelectedFruit] = useState(null);
+  const [focusedIndex, setFocusedIndex] = useState(-1);
   const [isHovered, setIsHovered] = useState(false);
   const comboBoxRef = useRef(null);
   const displayFruits = selectedFruit ? fruits.filter(fruit => fruit.name === selectedFruit) : filteredFruits;
@@ -36,6 +37,39 @@ function App() {
     };
   }, []);
 
+  const handleKeyDown = (e) => {
+    switch (e.key) {
+      case 'ArrowDown':
+        if (focusedIndex < displayFruits.length - 1) {
+          setFocusedIndex(prevIndex => prevIndex + 1);
+        } else {
+          setFocusedIndex(0); 
+        }
+        break;
+  
+      case 'ArrowUp':
+        if (focusedIndex > 0) {
+          setFocusedIndex(prevIndex => prevIndex - 1);
+        } else {
+          setFocusedIndex(displayFruits.length - 1);
+        }
+        break;
+  
+      case 'Enter':
+        if (focusedIndex >= 0 && focusedIndex < displayFruits.length) {
+          handleFruitClick(displayFruits[focusedIndex].name);
+        }
+        break;
+  
+      case 'Escape':
+        setDropdownVisibility(false);
+        setFocusedIndex(-1);
+        break;
+  
+      default:
+        break;
+    }
+  };
 
   const handleOutsideClick = (e) => {
     if (comboBoxRef.current && !comboBoxRef.current.contains(e.target)) {
@@ -72,6 +106,7 @@ function App() {
             className='search-input-field'
             value={inputValue}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
             onFocus={() => {
               setDropdownVisibility(true);
               setSelectedFruit(null);
@@ -80,7 +115,7 @@ function App() {
           />
           <span className="arrow">▼</span>
         </div>
-        {isDropdownVisible && ( 
+        {isDropdownVisible && (
           <div className="dropdown">
             {displayFruits.map(fruit => (
               <div
@@ -89,7 +124,7 @@ function App() {
                 onClick={() => handleFruitClick(fruit.name)}
                 onMouseEnter={() => setIsHovered(fruit.name)}
                 onMouseLeave={() => setIsHovered(null)}
-                style={{ backgroundColor: isHovered === fruit.name ? '#f0f0f0' : '#fff'}}
+                style={{ backgroundColor: isHovered === fruit.name || displayFruits[focusedIndex]?.name === fruit.name ? '#f0f0f0' : '#fff'}}
               >
                 <img src={fruit.img} alt={fruit.name} />
                 {fruit.name}
