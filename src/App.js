@@ -74,7 +74,7 @@ function App() {
               setDropdownVisibility(true);
               setSelectedFruit(null);
             }}
-            placeholder="Type or select a fruit..."
+            placeholder="Choose a Fruit..."
             style={{ padding: '8px', width: '100%' }}
           />
           <span style={{ position: 'absolute', right: '-10px', top: '38%', transform: 'translateY(-20%)', color: '#666'}}>▼</span>
@@ -95,7 +95,7 @@ function App() {
                   padding: '8px 12px',
                   borderBottom: '1px solid #eee',
                   backgroundColor: isHovered === fruit.name ? '#f0f0f0' : '#fff', 
-                  width: '197px',
+                  width: '100%',
                   transition: 'background-color 0.2s'
                 }}
               >
