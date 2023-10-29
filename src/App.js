@@ -24,6 +24,7 @@ function App() {
   const [inputValue, setInputValue] = useState('');
   const [filteredFruits, setFilteredFruits] = useState(fruits);
   const [selectedFruit, setSelectedFruit] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
   const comboBoxRef = useRef(null);
   const displayFruits = selectedFruit ? fruits.filter(fruit => fruit.name === selectedFruit) : filteredFruits;
 
@@ -33,6 +34,7 @@ function App() {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, []);
+
 
   const handleOutsideClick = (e) => {
     if (comboBoxRef.current && !comboBoxRef.current.contains(e.target)) {
@@ -63,39 +65,45 @@ function App() {
     <div className="app-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div className="combo-box" ref={comboBoxRef}>
         <h1>Tommy Combo Box</h1>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          onFocus={() => setDropdownVisibility(true)}
-          placeholder="Type or select a fruit..."
-          style={{ padding: '8px', width: '200px' }}
-        />
+        <div style={{ position: 'relative', width: '200px' }}>
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            onFocus={() => {
+              setDropdownVisibility(true);
+              setSelectedFruit(null);
+            }}
+            placeholder="Type or select a fruit..."
+            style={{ padding: '8px', width: '100%' }}
+          />
+          <span style={{ position: 'absolute', right: '-10px', top: '38%', transform: 'translateY(-20%)', color: '#666'}}>▼</span>
+        </div>
         {isDropdownVisible && ( 
           <div className="dropdown">
-          {displayFruits.map(fruit => (
-            <div
-              key={fruit.name}
-              className="dropdown-item"
-              onClick={() => handleFruitClick(fruit.name)}
-              style={{
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                padding: '8px 12px',
-                borderBottom: '1px solid #eee',
-                backgroundColor: '#fff',
-                transition: 'background-color 0.2s',
-                ':hover': {
-                  backgroundColor: '#f7f7f7'
-                }
-              }}
-            >
-              <img src={fruit.img} alt={fruit.name} style={{ width: '25px', marginRight: '10px' }} />
-              {fruit.name}
-            </div>
-          ))}
-        </div>
+            {displayFruits.map(fruit => (
+              <div
+                key={fruit.name}
+                className="dropdown-item"
+                onClick={() => handleFruitClick(fruit.name)}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                style={{
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '8px 12px',
+                  borderBottom: '1px solid #eee',
+                  backgroundColor: isHovered ? '#f0f0f0' : '#fff',  
+                  width: '197px',
+                  transition: 'background-color 0.2s'
+                }}
+              >
+                <img src={fruit.img} alt={fruit.name} style={{ width: '25px', marginRight: '10px' }} />
+                {fruit.name}
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </div>
