@@ -64,7 +64,7 @@ function App() {
   return (
     <div className="app-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div className="combo-box" ref={comboBoxRef}>
-        <h1>Tommy Combo Box</h1>
+        <h3>Tommy Combo Box</h3>
         <div style={{ position: 'relative', width: '200px' }}>
           <input
             type="text"
@@ -86,15 +86,15 @@ function App() {
                 key={fruit.name}
                 className="dropdown-item"
                 onClick={() => handleFruitClick(fruit.name)}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                onMouseEnter={() => setIsHovered(fruit.name)}
+                onMouseLeave={() => setIsHovered(null)}
                 style={{
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
                   padding: '8px 12px',
                   borderBottom: '1px solid #eee',
-                  backgroundColor: isHovered ? '#f0f0f0' : '#fff',  
+                  backgroundColor: isHovered === fruit.name ? '#f0f0f0' : '#fff', 
                   width: '197px',
                   transition: 'background-color 0.2s'
                 }}
