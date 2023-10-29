@@ -126,7 +126,7 @@ function App() {
                 onClick={() => handleFruitClick(fruit.name)}
                 onMouseEnter={() => setIsHovered(fruit.name)}
                 onMouseLeave={() => setIsHovered(null)}
-                style={{ backgroundColor: isHovered === fruit.name || displayFruits[focusedIndex]?.name === fruit.name ? '#f0f0f0' : '#fff' }}
+                style={{ backgroundColor: isHovered === fruit.name || displayFruits[focusedIndex]?.name === fruit.name ? '#f0f0f0' : '#fff', borderBottom: '1px solid #e8ebe6' }}
               >
                 <img src={fruit.img} alt={fruit.name} />
                 {fruit.name}
