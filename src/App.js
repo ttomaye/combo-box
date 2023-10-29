@@ -43,10 +43,10 @@ function App() {
         if (focusedIndex < displayFruits.length - 1) {
           setFocusedIndex(prevIndex => prevIndex + 1);
         } else {
-          setFocusedIndex(0); 
+          setFocusedIndex(0);
         }
         break;
-  
+
       case 'ArrowUp':
         if (focusedIndex > 0) {
           setFocusedIndex(prevIndex => prevIndex - 1);
@@ -54,18 +54,18 @@ function App() {
           setFocusedIndex(displayFruits.length - 1);
         }
         break;
-  
+
       case 'Enter':
         if (focusedIndex >= 0 && focusedIndex < displayFruits.length) {
           handleFruitClick(displayFruits[focusedIndex].name);
         }
         break;
-  
+
       case 'Escape':
         setDropdownVisibility(false);
         setFocusedIndex(-1);
         break;
-  
+
       default:
         break;
     }
@@ -126,7 +126,7 @@ function App() {
                 onClick={() => handleFruitClick(fruit.name)}
                 onMouseEnter={() => setIsHovered(fruit.name)}
                 onMouseLeave={() => setIsHovered(null)}
-                style={{ backgroundColor: isHovered === fruit.name || displayFruits[focusedIndex]?.name === fruit.name ? '#f0f0f0' : '#fff'}}
+                style={{ backgroundColor: isHovered === fruit.name || displayFruits[focusedIndex]?.name === fruit.name ? '#f0f0f0' : '#fff' }}
               >
                 <img src={fruit.img} alt={fruit.name} />
                 {fruit.name}
