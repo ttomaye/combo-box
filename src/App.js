@@ -7,6 +7,7 @@ import orangeImage from './images/orange.jpeg';
 import strawberryImage from './images/strawberry.jpeg';
 import grapeImage from './images/grape.jpeg';
 import watermelonImage from './images/watermelon.jpeg';
+import './App.css';
 
 const fruits = [
   { name: 'Apple', img: appleImage },
@@ -62,12 +63,13 @@ function App() {
   };
 
   return (
-    <div className="app-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div className="app-container">
       <div className="combo-box" ref={comboBoxRef}>
         <h3>Tommy Combo Box</h3>
-        <div style={{ position: 'relative', width: '200px' }}>
+        <div className="wrapper">
           <input
             type="text"
+            className='search-input-field'
             value={inputValue}
             onChange={handleInputChange}
             onFocus={() => {
@@ -75,9 +77,8 @@ function App() {
               setSelectedFruit(null);
             }}
             placeholder="Choose a Fruit..."
-            style={{ padding: '8px', width: '100%' }}
           />
-          <span style={{ position: 'absolute', right: '-10px', top: '38%', transform: 'translateY(-20%)', color: '#666'}}>▼</span>
+          <span className="arrow">▼</span>
         </div>
         {isDropdownVisible && ( 
           <div className="dropdown">
@@ -88,18 +89,9 @@ function App() {
                 onClick={() => handleFruitClick(fruit.name)}
                 onMouseEnter={() => setIsHovered(fruit.name)}
                 onMouseLeave={() => setIsHovered(null)}
-                style={{
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '8px 12px',
-                  borderBottom: '1px solid #eee',
-                  backgroundColor: isHovered === fruit.name ? '#f0f0f0' : '#fff', 
-                  width: '100%',
-                  transition: 'background-color 0.2s'
-                }}
+                style={{ backgroundColor: isHovered === fruit.name ? '#f0f0f0' : '#fff'}}
               >
-                <img src={fruit.img} alt={fruit.name} style={{ width: '25px', marginRight: '10px' }} />
+                <img src={fruit.img} alt={fruit.name} />
                 {fruit.name}
               </div>
             ))}

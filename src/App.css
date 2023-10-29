@@ -1,31 +1,38 @@
-.combo-box {
+.arrow {
+  position: absolute;
+  right: -10px;
+  top: 38%;
+  transform: translateY(-20%);
+  color: #666;
+}
+
+.app-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
   position: relative;
   width: 200px;
 }
 
-.dropdown {
-  display: none;
-  position: absolute;
-  border: 1px solid #ccc;
-}
-
-.combo-box input:focus + .dropdown {
-  display: block;
+.search-input-field {
+  padding: 8px; 
+  width: 100%;
 }
 
 .dropdown-item {
+  cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 8px;
-  cursor: pointer;
+  padding: 8px 12px;
+  border-bottom: '1px solid #eee';
+  width: 100%;
+  transition: 'background-color 0.2s';
 }
 
-.dropdown-item:hover {
-  background-color: #f7f7f7;
-}
-
-.dropdown-item img {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+.dropdown img {
+  width: 25px; 
+  margin-right: 10px;
 }
