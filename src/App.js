@@ -7,6 +7,7 @@ import orangeImage from './images/orange.jpeg';
 import strawberryImage from './images/strawberry.jpeg';
 import grapeImage from './images/grape.jpeg';
 import watermelonImage from './images/watermelon.jpeg';
+import expandImage from './images/expand.png';
 import './App.css';
 
 const fruits = [
@@ -115,7 +116,7 @@ function App() {
             aria-controls="fruit-list"
             placeholder="Choose a Fruit..."
           />
-          <span className="arrow">▼</span>
+          <span className="arrow"><img src={expandImage} aboutlt='expand arrow'/></span>
         </div>
         {isDropdownVisible && (
           <div className="dropdown">
